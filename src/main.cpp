@@ -65,11 +65,11 @@ float get_Average_Distance()
 	{
 		float distance_current = measure_Once();
 
-		if (abs(distance_current - avg_previous) < 0.15)
+		if (abs(distance_current - avg_previous) < avg_previous * 0.1)
 		{
 			sum += distance_current;
 			validCount++;
-			avg_previous = distance_current;
+			avg_previous = sum / validCount;
 		}
 
 		delay(10);
