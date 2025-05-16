@@ -44,12 +44,12 @@ float measure_Once()
 
 float initial_Average()
 {
-	int init_count = 5;
+	int init_count = 10;
 	float init_sum = 0;
 	for (int i = 0; i < init_count; i++)
 	{
 		init_sum += measure_Once();
-		delay(100);
+		delay(50);
 	}
 	return init_sum / init_count;
 }
