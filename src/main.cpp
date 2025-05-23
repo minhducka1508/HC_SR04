@@ -44,14 +44,18 @@ float measure_Once()
 
 float initial_Average()
 {
-	int init_count = 10;
+	int init_count = 20;
 	float init_sum = 0;
 	for (int i = 0; i < init_count; i++)
 	{
-		init_sum += measure_Once();
-		delay(50);
+		if (i >= 10)
+		{
+			init_sum += measure_Once();
+			delay(20);
+		}
 	}
-	return init_sum / init_count;
+
+	return init_sum / (init_count - 10);
 }
 
 float get_Average_Distance()
@@ -59,7 +63,7 @@ float get_Average_Distance()
 	float avg_previous = initial_Average();
 	float sum = avg_previous;
 	int validCount = 1;
-	int samples = 50;
+	int samples = 100;
 
 	for (int i = 1; i < samples; i++)
 	{
@@ -81,6 +85,10 @@ float get_Average_Distance()
 	Serial.print("ValidCount: ");
 	Serial.println(validCount);
 
+	lcd.clear();
+	lcd.setCursor(0, 0);
+	lcd.print("Valid/100: ");
+	lcd.print(validCount);
 	return sum / validCount;
 }
 
